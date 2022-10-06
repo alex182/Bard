@@ -19,8 +19,6 @@
     <Folder Include="Jobs\Models\" />
     <Folder Include="Properties\" />
     <Folder Include="Sources\Concretes\" />
-    <Folder Include="Sources\Interfaces\" />
-    <Folder Include="Sources\Models\" />
   </ItemGroup>
 
   <ItemGroup>
