@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Bard.Sources.Interfaces
 {
-    internal interface IRocketLaunchLiveAPIClient
+    public interface IRocketLaunchLiveAPIClient
     {
-        Task<APIResultsWrapper<ResponseBody>> GetLaunchesBetweenDates(DateTime afterDate, DateTime beforeDate);
+        Task<APIResultsWrapper<ResponseBody>> GetLaunchesBetweenDates(string afterDate, string beforeDate);
     }
 }

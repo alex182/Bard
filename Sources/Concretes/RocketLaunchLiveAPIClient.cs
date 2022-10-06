@@ -22,10 +22,10 @@ namespace Bard.Sources.Concretes
             _rocketLaunchLiveAPIClientOptions = rocketLaunchLiveAPIClientOptions;
         }
 
-        public async Task<APIResultsWrapper<ResponseBody>> GetLaunchesBetweenDates(DateTime afterDate, DateTime beforeDate)
+        public async Task<APIResultsWrapper<ResponseBody>> GetLaunchesBetweenDates(string afterDate, string beforeDate)
         {
             _httpClient.DefaultRequestHeaders.Accept.Clear();
-            var result = await _httpClient.GetAsync($"{_rocketLaunchLiveAPIClientOptions.BaseUrl}/json/launces?key={_rocketLaunchLiveAPIClientOptions.ApiKey}" +
+            var result = await _httpClient.GetAsync($"{_rocketLaunchLiveAPIClientOptions.BaseUrl}/json/launches?key={_rocketLaunchLiveAPIClientOptions.ApiKey}" +
                 $"&after_date={afterDate}&before_date{beforeDate}");
 
             if (!result.IsSuccessStatusCode)

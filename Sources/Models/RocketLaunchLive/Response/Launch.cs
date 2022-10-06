@@ -26,7 +26,7 @@ namespace Bard.Sources.Models.RocketLaunchLive.Response
         public List<Tag> Tags { get; set; } = new List<Tag> { };
         public string Slug { get; set; }
         public string Weather_Summary { get; set; }
-        public double Weather_Temp { get; set; }
+        public double? Weather_Temp { get; set; }
         public string Weather_Condition { get; set; }
         public double? Weather_Wind_MPH { get; set; }
         public string Weather_Icon { get; set; }

@@ -8,8 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="APITests\**" />
     <Compile Remove="MqttUnitTests\**" />
+    <EmbeddedResource Remove="APITests\**" />
     <EmbeddedResource Remove="MqttUnitTests\**" />
+    <None Remove="APITests\**" />
     <None Remove="MqttUnitTests\**" />
   </ItemGroup>
 
