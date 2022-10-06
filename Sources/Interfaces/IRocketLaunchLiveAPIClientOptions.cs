@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Bard.Sources.Interfaces
 {
-    internal interface IRocketLaunchLive
+    public interface IRocketLaunchLiveAPIClientOptions
     {
-
+        string BaseUrl { get; set; }
+        string ApiKey { get; set; }
     }
 }
