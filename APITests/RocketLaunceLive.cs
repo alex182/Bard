@@ -6,24 +6,23 @@ namespace APITests
     [TestClass]
     public class RocketLaunceLive
     {
-        private IRocketLaunchLiveAPIClientOptions _options;
         private IRocketLaunchLiveAPIClient _client;
 
         [TestInitialize]
         public void Setup()
         {
-            _options = new RocketLaunchLiveAPIClientOptions()
+            var options = new RocketLaunchLiveAPIClientOptions()
             {
                 ApiKey = Environment.GetEnvironmentVariable("RocketLaunchLiveAPIKey"),
                 BaseUrl = "https://fdo.rocketlaunch.live"
             };
 
-            if (string.IsNullOrEmpty(_options.ApiKey))
-                throw new NullReferenceException(nameof(_options.ApiKey));
+            if (string.IsNullOrEmpty(options.ApiKey))
+                throw new NullReferenceException(nameof(options.ApiKey));
 
             var httpClient = new HttpClient();
 
-            _client = new RocketLaunchLiveAPIClient(httpClient, _options);
+            _client = new RocketLaunchLiveAPIClient(httpClient, options);
         }
 
         [TestMethod]
