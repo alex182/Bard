@@ -38,7 +38,7 @@ namespace Bard.Destinations.Concretes
             return publishResult;
         }
 
-        internal async Task<IMqttClient> CreateMqttClient()
+        public async Task<IMqttClient> CreateMqttClient()
         {
             var client = _mqttFactory.CreateMqttClient();
 

@@ -10,5 +10,6 @@ namespace Bard.Destinations.Interfaces
     public interface IMqttDestination
     {
         Task<MqttClientPublishResult> SendMessage(IMqttMessage message);
+        Task<IMqttClient> CreateMqttClient();
     }
 }
