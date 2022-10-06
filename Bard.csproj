@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,9 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="MqttUnitTests\**" />
+    <EmbeddedResource Remove="MqttUnitTests\**" />
+    <None Remove="MqttUnitTests\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Jobs\Concretes\" />
     <Folder Include="Jobs\Interfaces\" />
     <Folder Include="Jobs\Models\" />
+    <Folder Include="Properties\" />
     <Folder Include="Sources\Concretes\" />
     <Folder Include="Sources\Interfaces\" />
     <Folder Include="Sources\Models\" />
@@ -18,6 +25,7 @@
 
   <ItemGroup>
     <PackageReference Include="MQTTnet" Version="4.1.1.318" />
+    <PackageReference Include="MSTest.TestFramework" Version="2.2.8" />
     <PackageReference Include="Serilog" Version="2.12.0" />
     <PackageReference Include="Serilog.Sinks.Splunk" Version="3.7.0" />
   </ItemGroup>

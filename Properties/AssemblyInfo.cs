@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("MqttTests")]
+[assembly: InternalsVisibleTo("MqttUnitTests")]
 
 namespace Bard.Properties
 {
