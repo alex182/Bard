@@ -36,7 +36,7 @@ namespace MqttUnitTests
         public async Task Test_Connect()
         {
             var factory = new MqttFactory();
-            var destinationClient = new MqttDestinationClient(_mqttOptions, factory);
+            var destinationClient = new Bard.Destinations.Concretes.MqttClient(_mqttOptions, factory);
             Exception exception = null;
 
             try
@@ -58,7 +58,7 @@ namespace MqttUnitTests
         public async Task PublishMessage()
         {
             var factory = new MqttFactory();
-            var destinationClient = new MqttDestinationClient(_mqttOptions, factory);
+            var destinationClient = new Bard.Destinations.Concretes.MqttClient(_mqttOptions, factory);
             var message = new MqttMessage()
             {
                 Payload = $"Hello World! {DateTime.UtcNow}",

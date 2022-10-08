@@ -12,12 +12,10 @@ namespace Bard.Jobs.Concretes
     {
         protected readonly CancellationTokenSource _stoppingCts = new CancellationTokenSource();
         protected Task _executingTask;
-        private ILogger _logger; 
 
 
-        public BaseJob(ILogger logger)
+        public BaseJob()
         {
-            _logger = logger;
         }
 
         public void Dispose()

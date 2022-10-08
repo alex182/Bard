@@ -17,13 +17,13 @@ namespace Bard.Jobs.Concretes
     public class RocketLaunchLiveApiToHAMqtt : BaseJob
     {
         private readonly IRocketLaunchLiveAPIClient _rocketLaunchLiveClient;
-        private readonly IMqttDestination _haMqttDestionation;
+        private readonly IMqttClient _mqttClient;
 
-        public RocketLaunchLiveApiToHAMqtt(ILogger logger, IRocketLaunchLiveAPIClient rocketLaunchLiveClient,
-            IMqttDestination haMqttDestionation) : base(logger)
+        public RocketLaunchLiveApiToHAMqtt(IRocketLaunchLiveAPIClient rocketLaunchLiveClient,
+            IMqttClient mqttClient)
         {
             _rocketLaunchLiveClient = rocketLaunchLiveClient;
-            _haMqttDestionation = haMqttDestionation;
+            _mqttClient = mqttClient;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -43,7 +43,7 @@ namespace Bard.Jobs.Concretes
 
                     if (result.IsSuccessStatusCode)
                     {
-                        await _haMqttDestionation.CreateMqttClient();
+                        await _mqttClient.CreateMqttClient();
 
                         var message = new MqttMessage()
                         {
@@ -51,7 +51,7 @@ namespace Bard.Jobs.Concretes
                             Topic = "/Bard/Launch"
                         };
 
-                        var publishResult = await _haMqttDestionation.SendMessage(message);
+                        var publishResult = await _mqttClient.SendMessage(message);
                     }
                 }
                 catch (Exception ex)
@@ -64,7 +64,7 @@ namespace Bard.Jobs.Concretes
                     var timeToWait = nextStop - DateTime.Now;
                     var millisToWait = timeToWait.TotalMilliseconds;
 
-                    await Task.Delay(TimeSpan.FromMinutes(millisToWait), stoppingToken);
+                    await Task.Delay((int)millisToWait, stoppingToken);
                 }
             }
         }

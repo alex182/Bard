@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Bard.Destinations.Concretes
 {
-    public class MqttDestinationClient : IMqttDestination
+    public class MqttClient : Interfaces.IMqttClient
     {
         private readonly IMqttOptions _mqttOptions;
         private readonly MqttFactory _mqttFactory;
 
-        public MqttDestinationClient(IMqttOptions mqttOptions, MqttFactory mqttFactory)
+        public MqttClient(IMqttOptions mqttOptions, MqttFactory mqttFactory)
         {
             _mqttOptions = mqttOptions;
             _mqttFactory = mqttFactory;
@@ -38,7 +38,7 @@ namespace Bard.Destinations.Concretes
             return publishResult;
         }
 
-        public async Task<IMqttClient> CreateMqttClient()
+        public async Task<MQTTnet.Client.IMqttClient> CreateMqttClient()
         {
             var client = _mqttFactory.CreateMqttClient();
 

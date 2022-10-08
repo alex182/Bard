@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Bard.Destinations.Interfaces
 {
-    public interface IMqttDestination
+    public interface IMqttClient
     {
         Task<MqttClientPublishResult> SendMessage(IMqttMessage message);
-        Task<IMqttClient> CreateMqttClient();
+        Task<MQTTnet.Client.IMqttClient> CreateMqttClient();
     }
 }
