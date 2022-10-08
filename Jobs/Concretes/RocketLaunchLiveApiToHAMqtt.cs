@@ -1,6 +1,7 @@
 ﻿using Bard.Destinations.Concretes;
 using Bard.Destinations.Interfaces;
 using Bard.Destinations.Models;
+using Bard.Jobs.Models;
 using Bard.Sources.Interfaces;
 using Microsoft.Extensions.Hosting;
 using MQTTnet;
@@ -18,12 +19,14 @@ namespace Bard.Jobs.Concretes
     {
         private readonly IRocketLaunchLiveAPIClient _rocketLaunchLiveClient;
         private readonly IMqttClient _mqttClient;
+        private readonly RocketLaunchLiveApiToHAMqttOptions _options;
 
         public RocketLaunchLiveApiToHAMqtt(IRocketLaunchLiveAPIClient rocketLaunchLiveClient,
-            IMqttClient mqttClient)
+            IMqttClient mqttClient, RocketLaunchLiveApiToHAMqttOptions options)
         {
             _rocketLaunchLiveClient = rocketLaunchLiveClient;
             _mqttClient = mqttClient;
+            _options = options;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -48,7 +51,7 @@ namespace Bard.Jobs.Concretes
                         var message = new MqttMessage()
                         {
                             Payload = JsonConvert.SerializeObject(result),
-                            Topic = "/Bard/Launch"
+                            Topic = _options.Topic
                         };
 
                         var publishResult = await _mqttClient.SendMessage(message);

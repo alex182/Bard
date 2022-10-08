@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="Jobs\Interfaces\" />
-    <Folder Include="Jobs\Models\" />
     <Folder Include="Properties\" />
   </ItemGroup>
 

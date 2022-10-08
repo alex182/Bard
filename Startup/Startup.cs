@@ -2,6 +2,7 @@
 using Bard.Destinations.Interfaces;
 using Bard.Destinations.Models;
 using Bard.Jobs.Concretes;
+using Bard.Jobs.Models;
 using Bard.Sources.Concretes;
 using Bard.Sources.Interfaces;
 using Microsoft.AspNetCore.Builder;
@@ -56,6 +57,11 @@ namespace Bard.Startup
 
             var httpClient = new HttpClient();
 
+            var rocketJobOptions = new RocketLaunchLiveApiToHAMqttOptions()
+            {
+                Topic = "/Bard/Launch"
+            };
+
             services.AddSingleton<IMqttOptions, HomeAssistantMqttOptions>(provider => haMqttOptions)
               .AddSingleton<MqttFactory, MqttFactory>(provider => new MqttFactory())
               .AddTransient<IMqttClient, MqttClient>()
@@ -63,6 +69,7 @@ namespace Bard.Startup
               .AddSingleton<IRocketLaunchLiveAPIClientOptions, RocketLaunchLiveAPIClientOptions>(provider => rocketLaunchLiveApiOptions)
               .AddSingleton<IRocketLaunchLiveAPIClient, RocketLaunchLiveAPIClient>()
               .AddSingleton<IHostedService, RocketLaunchLiveApiToHAMqtt>()
+              .AddSingleton<RocketLaunchLiveApiToHAMqttOptions,RocketLaunchLiveApiToHAMqttOptions>(provider => rocketJobOptions)
               .AddHostedService<RocketLaunchLiveApiToHAMqtt>();
         }
 
